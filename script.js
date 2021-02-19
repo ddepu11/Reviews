@@ -19,10 +19,15 @@ const showInfoInDom = (dp, name, position, description) => {
 };
 
 // Event Listeners
+// Show Previous Review
 previousBtn.addEventListener("click", () => {
   if (counter < 0) {
     counter += people.length;
   }
+  if (counter > people.length - 1) {
+    counter = counter - people.length;
+  }
+
   const { dp, name, position, description } = people[counter];
 
   showInfoInDom(dp, name, position, description);
@@ -30,7 +35,12 @@ previousBtn.addEventListener("click", () => {
   counter--;
 });
 
+// Show Next Review
 nextBtn.addEventListener("click", () => {
+  if (counter < 0) {
+    counter += people.length;
+  }
+
   if (counter > people.length - 1) {
     counter = counter - people.length;
   }
@@ -41,6 +51,7 @@ nextBtn.addEventListener("click", () => {
   counter++;
 });
 
+// Show Random Review
 randomBtn.addEventListener("click", () => {
   const person = people[Math.floor(Math.random() * people.length)];
 
